@@ -740,21 +740,8 @@ function initTypewriter() {
 // ============================================================
 
 function initBgSlide() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    const bgBase = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#f7f8fc';
-    const colors = [
-        bgBase,
-        '#eef3ff',
-        bgBase,
-        '#f5f3ff',
-        bgBase,
-    ];
-    let i = 0;
-    setInterval(() => {
-        hero.style.backgroundColor = colors[i];
-        i = (i + 1) % colors.length;
-    }, 3500);
+    // Fitur dinonaktifkan agar background tetap satu warna
+    // dan teks dapat dibaca pada mode gelap maupun terang.
 }
 
 // ============================================================
