@@ -699,7 +699,7 @@ document.addEventListener('keydown', (e) => {
 // ============================================================
 
 const typewriterPhrases = [
-    'Materi ++ Pemrograman ++ Arsitektur',
+    'Materi • Pemrograman • Arsitektur',
     'CPU · Memori · Pipeline · ISA',
     '16 Pertemuan · 16 Soal Kuis',
     'Von Neumann · RISC · CISC · Multicore',
