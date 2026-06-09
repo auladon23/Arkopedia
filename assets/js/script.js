@@ -967,6 +967,15 @@ window.addEventListener('DOMContentLoaded', () => {
     initClickRipple();
     initScrollToTop();
 
+    document.addEventListener('click', (e) => {
+        const nav = document.getElementById('mainNav');
+        const menu = document.getElementById('navMenu');
+        const toggle = nav.querySelector('.navbar-toggler');
+        if (menu.classList.contains('show') && !nav.contains(e.target)) {
+            toggle.click();
+        }
+    });
+
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 600,

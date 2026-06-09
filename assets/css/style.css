@@ -94,7 +94,6 @@ body {
     position: relative;
     overflow: hidden;
     background-color: var(--bg);
-    transition: background-color 1.5s ease;
 }
 
 .hero::before {
@@ -106,7 +105,6 @@ body {
     height: 600px;
     background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
     pointer-events: none;
-    transition: opacity 1s ease;
 }
 
 .hero::after {
@@ -121,7 +119,17 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: center;
+    align-items: start;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-visual {
+    position: sticky;
+    top: 100px;
 }
 
 .hero-badge {
@@ -142,6 +150,7 @@ body {
     line-height: 1.08;
     letter-spacing: -0.04em;
     margin-bottom: 1.2rem;
+    color: var(--text);
 }
 
 .gradient-text {
@@ -239,67 +248,167 @@ body {
     background: var(--border);
 }
 
-/* Hero Visual Card */
-.hero-visual {
+/* Hero Visual — Modern E-Learning Card */
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 30% 40%, var(--primary-glow) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-card-modern {
     position: relative;
-}
-
-.hero-card {
-    background: linear-gradient(145deg, #1a2332 0%, #0f1729 100%);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 2rem;
-    color: white;
+    padding: 1.75rem;
     box-shadow: var(--shadow-xl);
+    transition: var(--transition);
 }
 
-.hero-card-header {
+.hero-card-modern:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xl), 0 0 0 2px var(--primary-light);
+}
+
+.hero-card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.hero-chip {
-    padding: 0.35rem 0.85rem;
-    background: rgba(255, 255, 255, 0.1);
+.hero-card-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.85rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
     border-radius: 999px;
-    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+}
+
+.hero-card-icon {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.hero-card-modern h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.hero-progress {
+    margin-bottom: 1.25rem;
+}
+
+.hero-progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+}
+
+.hero-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.hero-progress-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
-.hero-diagram {
+.hero-module-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.hero-module {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1.5rem 0;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 500;
+    background: var(--bg);
+    transition: var(--transition);
 }
 
-.diagram-block {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    padding: 1rem 1.5rem;
-    text-align: center;
-    min-width: 100px;
-}
-
-.diagram-block span {
-    display: block;
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.diagram-block small {
-    display: block;
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 0.2rem;
-}
-
-.diagram-arrow {
-    color: rgba(255, 255, 255, 0.3);
+.hero-module .module-check {
+    font-size: 0.9rem;
+    display: flex;
     flex-shrink: 0;
+}
+
+.hero-module.completed {
+    color: var(--text-secondary);
+}
+
+.hero-module.completed .module-check {
+    color: var(--success);
+}
+
+.hero-module.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.hero-module.active .module-check {
+    color: var(--primary);
+}
+
+.hero-module.locked {
+    color: var(--text-muted);
+}
+
+.hero-module.locked .module-check {
+    color: var(--text-muted);
+}
+
+.hero-card-footer {
+    display: flex;
+    gap: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.hero-card-footer span {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.hero-card-footer span i {
+    color: var(--warning);
+}
+
+.hero-card-footer span:nth-child(2) i {
+    color: var(--primary);
+}
+
+.hero-card-footer span:nth-child(3) i {
+    color: var(--accent);
 }
 
 /* ─── Silabus ─── */
@@ -823,14 +932,36 @@ body {
     --surface-hover: #334155;
     --border: #334155;
     --border-hover: #475569;
-    --text: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --primary: #60a5fa;
+    --primary-dark: #3b82f6;
+    --accent: #38bdf8;
     --primary-light: #1e3a5f;
-    --primary-glow: rgba(59, 130, 246, 0.15);
+    --primary-glow: rgba(96, 165, 250, 0.15);
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.3);
     --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .hero-module.active {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .btn-outline {
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(96, 165, 250, 0.1);
+}
+
+[data-theme="dark"] .btn-primary {
+    box-shadow: 0 4px 20px rgba(96, 165, 250, 0.25);
 }
 
 [data-theme="dark"] #mainNav {
@@ -838,8 +969,9 @@ body {
     border-bottom-color: var(--border);
 }
 
-[data-theme="dark"] .hero-card {
-    background: linear-gradient(145deg, #0f1729 0%, #1a2332 100%);
+[data-theme="dark"] .hero-card-modern {
+    background: var(--surface);
+    border-color: var(--border);
 }
 
 [data-theme="dark"] .hero-badge,
@@ -1057,7 +1189,8 @@ body {
 /* ─── Responsive ─── */
 @media (max-width: 991.98px) {
     .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-visual { order: -1; }
+    .hero-visual { position: static; }
+    .hero-visual::before { display: none; }
     .hero-stats { justify-content: center; }
     .reader-wrapper { grid-template-columns: 1fr; }
     .reader-sidebar { display: none; }
@@ -1068,8 +1201,9 @@ body {
     .hero-actions { flex-direction: column; }
     .hero-actions .btn { width: 100%; }
     .hero-stats { gap: 1.5rem; }
-    .hero-diagram { flex-direction: column; }
-    .diagram-arrow { transform: rotate(90deg); }
+    .hero-module-list { gap: 0.25rem; }
+    .hero-module { font-size: 0.78rem; padding: 0.4rem 0.6rem; }
+    .hero-card-footer { flex-wrap: wrap; gap: 0.75rem; }
     .reader-content { padding: 1.5rem; }
     .reader-nav { flex-direction: column; }
     .reader-nav button { width: 100%; }
